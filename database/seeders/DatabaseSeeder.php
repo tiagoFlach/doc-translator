@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
 		User::factory(20)
 			->tradutor()
-			->languages()
+			// ->languages()
 			->create();
 			
 		User::factory(100)

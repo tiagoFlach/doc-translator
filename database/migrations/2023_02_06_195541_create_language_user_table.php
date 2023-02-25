@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
 			$table->foreignIdFor(Language::class)->constrained();
 			$table->foreignIdFor(User::class)->constrained();
+			$table->string('level', 50);
             $table->timestamps();
         });
     }
