@@ -4,6 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,7 +48,7 @@ class User extends Authenticatable
 	/**
 	 * Get the role that owns the user.
 	 */
-	public function role()
+	public function role(): BelongsTo
 	{
 		return $this->belongsTo(Role::class);
 	}
@@ -53,7 +56,7 @@ class User extends Authenticatable
 	/**
 	 * Get the language that owns the user.
 	 */
-	public function languages()
+	public function languages(): BelongsToMany
 	{
 		return $this->belongsToMany(Language::class);
 	}
@@ -61,7 +64,7 @@ class User extends Authenticatable
 	/**
 	 * Get the services for the user.
 	 */
-	public function services()
+	public function services(): HasMany
 	{
 		return $this->hasMany(Service::class);
 	}

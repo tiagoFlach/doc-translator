@@ -10,26 +10,22 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('language_user', function (Blueprint $table) {
             $table->id();
-			$table->foreignIdFor(Language::class)->constrained();
-			$table->foreignIdFor(User::class)->constrained();
-			$table->string('level', 50);
+            $table->foreignIdFor(Language::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
+            $table->string('level', 50);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('language_user');
     }

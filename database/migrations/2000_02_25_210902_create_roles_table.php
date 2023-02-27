@@ -8,27 +8,21 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-			$table->string('code', 2);
-			$table->string('name', 100);
-			$table->string('native_name', 100);
+            $table->string('name', 50);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('roles');
     }
 };

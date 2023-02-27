@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Role extends Model
 {
@@ -13,7 +14,7 @@ class Role extends Model
 	const TRADUTOR = 2;
 	const CLIENTE = 3;
 
-	function users()
+	function users(): HasMany
 	{
 		return $this->hasMany(User::class);
 	}
