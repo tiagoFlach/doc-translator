@@ -27,12 +27,13 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         User::factory(20)
-            ->tradutor()
-            ->languages()
+            ->translator()
+            ->language()
             ->create();
             
         User::factory(100)
-            ->cliente()
+            ->client()
+            ->hasServices(3)
             ->create();
 
         $admin = User::create([
@@ -42,18 +43,23 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
         ]);
 
-        $tradutor = User::create([
-            'role_id' => Role::TRADUTOR,
+        $translator = User::create([
+            'role_id' => Role::TRANSLATOR,
             'name' => 'Tradutor',
             'email' => 'tradutor@email.com',
             'password' => bcrypt('123456'),
-        ]);
+        ]);        
 
-        $cliente = User::create([
-            'role_id' => Role::CLIENTE,
-            'name' => 'Cliente',
-            'email' => 'cliente@email.com',
-            'password' => bcrypt('123456'),
-        ]);
+        $client = User::factory([
+                'role_id' => Role::CLIENT,
+                'name' => 'Cliente',
+                'email' => 'cliente@email.com',
+                'password' => bcrypt('123456'),
+            ])
+            ->hasServices(5)
+            ->create();
+
+        // $client->hasServices(3)
+        //     ->create();
     }
 }

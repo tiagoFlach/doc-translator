@@ -16,15 +16,17 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('name', 100);
+            $table->text('description');
             $table->string('file', 100);
-            $table->integer('price');
+            $table->float('price', 8, 2);
             $table->foreignId('initial_language_id')
                 ->constrained('languages');
             $table->foreignId('final_language_id')
                 ->constrained('languages');
-            $table->foreignId('tradutor_id')
+            $table->foreignId('translator_id')
+                ->nullable()
                 ->constrained('users')
-                ->nullable();
+                ->default(null);
             $table->timestamps();
         });
     }

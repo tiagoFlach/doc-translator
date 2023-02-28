@@ -46,43 +46,57 @@ class UserFactory extends Factory
 		]);
 	}
 
-	public function tradutor()
+	public function translator()
 	{
 		return $this->state(fn (array $attributes) => [
-			'role_id' => Role::TRADUTOR,
+			'role_id' => Role::TRANSLATOR,
 		]);
 	}
 
-	public function cliente()
+	public function client()
 	{
 		return $this->state(fn (array $attributes) => [
-			'role_id' => Role::CLIENTE,
+			'role_id' => Role::CLIENT,
 		]);
 	}
 
-	public function languages()
+	public function language()
 	{
-		// $roles = Role::all()
-		// 	->random()
-		// 	->take(rand(1, 4))
-		// 	->pluck('id')
-		// 	->toArray();
+		$english = Language::firstWhere('name', 'English')->id;
+		$portuguese = Language::firstWhere('name', 'Portuguese')->id;
 
-		$roles = Role::inRandomOrder()
-			->limit(rand(1, 3))
-			->pluck('id')
-			->toArray();
+		return $this->afterCreating(function (User $user) use ($english, $portuguese) {
+			$languages = Language::inRandomOrder()
+				->limit(rand(1, 2))
+				->pluck('id')
+				->toArray();
 
-		
-		foreach ($roles as &$role) {
-			$role = [
-				'language_id' => $role,
-				'level' => array_rand(array_flip(Language::LEVELS)),
-			];
-		}
+			foreach ($languages as &$language) {
+				$language = [
+					'language_id' => $language,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				];
+			}
 
-		// dd($roles);
+			// Adiciona inglês com 50% de chance
+			if (rand(0, 1) === 1) {
+				$english = [
+					'language_id' => $english,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				];
+				array_push($languages, $english);
+			}
 
-		return $this->afterCreating(fn(User $user) => $user->languages()->sync($roles));
+			// Adiciona português com 50% de chance
+			if (rand(0, 1) === 1) {
+				$portuguese = [
+					'language_id' => $portuguese,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				];
+				array_push($languages, $portuguese);
+			}
+
+			$user->languages()->sync($languages);
+		});
 	}
 }

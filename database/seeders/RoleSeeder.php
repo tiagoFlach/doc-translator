@@ -17,10 +17,10 @@ class RoleSeeder extends Seeder
 			'name' => 'administrador',
 		]);
 		Role::create([
-			'name' => 'tradutor',
+			'name' => 'translator',
 		]);
 		Role::create([
-			'name' => 'cliente',
+			'name' => 'client',
 		]);
     }
 }

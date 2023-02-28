@@ -15,8 +15,8 @@ class Service extends Model
 		return $this->belongsTo(User::class);
 	}
 
-	public function tradutor(): BelongsTo
+	public function translator(): BelongsTo
 	{
-		return $this->belongsTo(User::class, 'tradutor_id');
+		return $this->belongsTo(User::class, 'translator_id');
 	}
 }
