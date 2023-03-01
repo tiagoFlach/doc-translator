@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceCreateRequest;
+use App\Models\Language;
 use App\Models\Service;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
@@ -26,25 +31,37 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $languages = Language::all();
+
+        return view('service.create', compact('languages'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceCreateRequest $request): RedirectResponse
     {
-        //
+        $service = new Service();
+        $service->title = $request->input('title');
+        $service->description = $request->input('description');
+        $service->price = $request->input('price');
+        $service->file = $request->input('file');
+        $service->initial_language_id = $request->input('initial_language');
+        $service->final_language_id = $request->input('final_language');
+        $service->user_id = auth()->user()->id;
+        $service->save();
+        
+        return Redirect::route('service.show', $service->id)->with('status', 'service-created');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show(Service $service): View
     {
-        //
+        return view('service.show', compact('service'));
     }
 
     /**

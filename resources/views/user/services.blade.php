@@ -1,8 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Meus Serviços') }}
-        </h2>
+        <div class="flex justify-between">
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('Meus Serviços') }}
+                </h2>
+            </div>
+
+            <div>
+                <x-header-button :href="route('service.create')">
+                    {{ __('Criar Serviço') }}
+                </x-header-button>
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -10,8 +20,21 @@
 			<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 				@foreach ($services as $service)
 				<div class="p-6 text-gray-900">
-					<b>{{ $service->id }}</b>&nbsp;
-					{{ $service->name }}
+					<div class="flex justify-between">
+                        <div>
+                            <b>{{ $service->id }}</b>&nbsp;
+                            {{ $service->title }}
+                        </div>
+                        <div>
+                            <a href="{{ route('service.show', $service->id) }}">
+                                <x-primary-button>
+                                    {{ __('Ver') }}
+                                </x-primary-button>
+                            </a>
+                        </div>
+
+                    </div>
+
                 </div>
 				@endforeach
             </div>

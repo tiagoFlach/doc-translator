@@ -18,13 +18,12 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->jobTitle(),
+            'title' => fake()->jobTitle(),
             'description' => fake()->paragraph(),
-            'file' => fake()->name(),
             'price' => floatval(rand(20, 1000) . '.' . rand(0, 99)),
+            'file' => fake()->name(),
             'initial_language_id' => Language::inRandomOrder()->first()->id,
             'final_language_id' => Language::inRandomOrder()->first()->id,
-            'translator_id' => null,
         ];
     }
 }

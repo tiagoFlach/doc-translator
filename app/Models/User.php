@@ -45,6 +45,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Determine if the user is an admin.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role->id === Role::ADMIN;
+    }
+
+    /**
+     * Determine if the user is a translator.
+     */
+    public function isTranslator(): bool
+    {
+        return $this->role->id === Role::TRANSLATOR;
+    }
+
+    /**
+     * Determine if the user is a client.
+     */
+    public function isClient(): bool
+    {
+        return $this->role->id === Role::CLIENT;
+    }
+
 	/**
 	 * Get the role that owns the user.
 	 */

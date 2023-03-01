@@ -40,7 +40,6 @@ Route::controller(ServiceController::class)
     });
 Route::resource('service', ServiceController::class);
 
-
 // User
 Route::controller(UserController::class)
     ->middleware('auth')

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->string('name', 100);
+            $table->string('title', 100);
             $table->text('description');
             $table->string('file', 100);
             $table->float('price', 8, 2);
