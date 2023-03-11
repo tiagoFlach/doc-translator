@@ -5,13 +5,30 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.5.2",
+        "@headlessui/react": "^1.4.2",
+        "@inertiajs/react": "^1.0.0",
+        "@popperjs/core": "^2.11.6",
+        "@tailwindcss/forms": "^0.5.3",
+        "@vitejs/plugin-react": "^3.0.0",
         "alpinejs": "^3.4.2",
-        "autoprefixer": "^10.4.13",
+        "autoprefixer": "^10.4.12",
         "axios": "^1.1.2",
+        "bootstrap": "^5.2.3",
         "laravel-vite-plugin": "^0.7.2",
-        "postcss": "^8.4.21",
-        "tailwindcss": "^3.2.7",
-        "vite": "^4.0.0"
+        "postcss": "^8.4.18",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "sass": "^1.56.1",
+        "tailwindcss": "^3.2.1",
+        "typescript": "^4.9.5",
+        "vite": "^4.0.0",
+        "vite-node-dev": "^2.0.0"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.10.6",
+        "@emotion/styled": "^11.10.6",
+        "@mui/icons-material": "^5.11.11",
+        "@mui/material": "^5.11.11",
+        "react-router-dom": "^6.8.2"
     }
 }
