@@ -69,27 +69,27 @@ class User extends Authenticatable
         return $this->role->id === Role::CLIENT;
     }
 
-	/**
-	 * Get the role that owns the user.
-	 */
-	public function role(): BelongsTo
-	{
-		return $this->belongsTo(Role::class);
-	}
+    /**
+     * Get the role that owns the user.
+     */
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
 
-	/**
-	 * Get the language that owns the user.
-	 */
-	public function languages(): BelongsToMany
-	{
-		return $this->belongsToMany(Language::class);
-	}
+    /**
+     * Get the language that owns the user.
+     */
+    public function languages(): BelongsToMany
+    {
+        return $this->belongsToMany(Language::class);
+    }
 
-	/**
-	 * Get the services for the user.
-	 */
-	public function services(): HasMany
-	{
-		return $this->hasMany(Service::class);
-	}
+    /**
+     * Get the services for the user.
+     */
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
+    }
 }

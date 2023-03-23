@@ -10,13 +10,13 @@ class Service extends Model
 {
     use HasFactory;
 
-	public function user(): BelongsTo
-	{
-		return $this->belongsTo(User::class);
-	}
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
-	public function translator(): BelongsTo
-	{
-		return $this->belongsTo(User::class, 'translator_id');
-	}
+    public function translator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'translator_id');
+    }
 }

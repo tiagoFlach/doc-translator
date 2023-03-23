@@ -50,5 +50,4 @@ Route::controller(UserController::class)
     });
 Route::resource('user', UserController::class);
 
-
 require __DIR__.'/auth.php';

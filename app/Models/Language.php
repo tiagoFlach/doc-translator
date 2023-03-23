@@ -10,14 +10,14 @@ class Language extends Model
 {
     use HasFactory;
 
-	const LEVELS = [
-		'beginner',
-		'intermediate',
-		'advanced',
-	];
+    public const LEVELS = [
+        'beginner',
+        'intermediate',
+        'advanced',
+    ];
 
-	public function users(): BelongsToMany
-	{
-		return $this->belongsToMany(User::class);
-	}
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

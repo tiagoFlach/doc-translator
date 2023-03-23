@@ -12,7 +12,6 @@ use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
-
     public function userServices()
     {
         $services = auth()->user()->services;
@@ -25,7 +24,6 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -52,7 +50,7 @@ class ServiceController extends Controller
         $service->final_language_id = $request->input('final_language');
         $service->user_id = auth()->user()->id;
         $service->save();
-        
+
         return Redirect::route('service.show', $service->id)->with('status', 'service-created');
     }
 
@@ -69,7 +67,6 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
     }
 
     /**
@@ -77,7 +74,6 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
     }
 
     /**
@@ -85,6 +81,5 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
     }
 }

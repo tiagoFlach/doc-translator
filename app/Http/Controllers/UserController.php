@@ -19,7 +19,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -27,7 +26,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,7 +33,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -43,7 +40,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
     }
 
     /**
@@ -51,7 +47,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
     }
 
     /**
@@ -59,7 +54,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
     }
 
     /**
@@ -67,6 +61,5 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
     }
 }

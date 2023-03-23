@@ -12,7 +12,6 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -20,7 +19,6 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -28,7 +26,6 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -36,7 +33,6 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-        //
     }
 
     /**
@@ -44,7 +40,6 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        //
     }
 
     /**
@@ -52,7 +47,6 @@ class LanguageController extends Controller
      */
     public function update(Request $request, Language $language)
     {
-        //
     }
 
     /**
@@ -60,6 +54,5 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
     }
 }

@@ -10,12 +10,12 @@ class Role extends Model
 {
     use HasFactory;
 
-	const ADMIN = 1;
-	const TRANSLATOR = 2;
-	const CLIENT = 3;
+    private const ADMIN = 1;
+    private const TRANSLATOR = 2;
+    private const CLIENT = 3;
 
-	function users(): HasMany
-	{
-		return $this->hasMany(User::class);
-	}
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }
