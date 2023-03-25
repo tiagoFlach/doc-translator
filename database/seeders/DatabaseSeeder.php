@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             LanguageSeeder::class,
-            // UserSeeder::class,
+            CategorySeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
@@ -37,24 +37,24 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         $admin = User::create([
-            'role_id' => Role::ADMIN,
+            'role_id' => Role::getAdminId(),
             'name' => 'Administrador',
             'email' => 'admin@email.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('123'),
         ]);
 
         $translator = User::create([
-            'role_id' => Role::TRANSLATOR,
+            'role_id' => Role::getTranslatorId(),
             'name' => 'Tradutor',
             'email' => 'tradutor@email.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('123'),
         ]);        
 
         $client = User::factory([
-                'role_id' => Role::CLIENT,
+                'role_id' => Role::getClientId(),
                 'name' => 'Cliente',
                 'email' => 'cliente@email.com',
-                'password' => bcrypt('123456'),
+                'password' => bcrypt('123'),
             ])
             ->hasServices(5)
             ->create();

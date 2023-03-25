@@ -36,7 +36,8 @@ Route::controller(ServiceController::class)
     ->prefix('service')
     ->name('service.')
     ->group(function () {
-        Route::get('/userservices', 'userServices')->name('user');
+        // Route::get('/userservices', 'userServices')->name('user');
+        Route::get('/search', 'search')->name('search');
     });
 Route::resource('service', ServiceController::class);
 
@@ -46,7 +47,7 @@ Route::controller(UserController::class)
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        Route::get('/{user}/services', 'services')->name('services');
+        Route::get('/services', 'services')->name('services');
     });
 Route::resource('user', UserController::class);
 

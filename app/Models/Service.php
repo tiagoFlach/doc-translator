@@ -19,4 +19,24 @@ class Service extends Model
     {
         return $this->belongsTo(User::class, 'translator_id');
     }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function initialLanguage(): BelongsTo
+    {
+        return $this->belongsTo(Language::class, 'initial_language_id');
+    }
+
+    public function finalLanguage(): BelongsTo
+    {
+        return $this->belongsTo(Language::class, 'final_language_id');
+    }
+
+    public function file(): BelongsTo
+    {
+        return $this->belongsTo(File::class);
+    }
 }

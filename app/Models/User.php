@@ -21,6 +21,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
         'name',
         'email',
         'password',
@@ -50,7 +51,7 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return $this->role->id === Role::ADMIN;
+        return $this->role->id === Role::getAdminId();
     }
 
     /**
@@ -58,7 +59,7 @@ class User extends Authenticatable
      */
     public function isTranslator(): bool
     {
-        return $this->role->id === Role::TRANSLATOR;
+        return $this->role->id === Role::getTranslatorId();
     }
 
     /**
@@ -66,7 +67,7 @@ class User extends Authenticatable
      */
     public function isClient(): bool
     {
-        return $this->role->id === Role::CLIENT;
+        return $this->role->id === Role::getClientId();
     }
 
     /**

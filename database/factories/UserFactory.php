@@ -42,21 +42,21 @@ class UserFactory extends Factory
     public function admin()
 	{
 		return $this->state(fn (array $attributes) => [
-			'role_id' => Role::ADMIN,
+			'role_id' => Role::getAdminId()
 		]);
 	}
 
 	public function translator()
 	{
 		return $this->state(fn (array $attributes) => [
-			'role_id' => Role::TRANSLATOR,
+			'role_id' => Role::getTranslatorId(),
 		]);
 	}
 
 	public function client()
 	{
 		return $this->state(fn (array $attributes) => [
-			'role_id' => Role::CLIENT,
+			'role_id' => Role::getClientId(),
 		]);
 	}
 

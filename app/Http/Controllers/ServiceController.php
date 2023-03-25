@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceCreateRequest;
+use App\Models\Category;
 use App\Models\Language;
 use App\Models\Service;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -17,6 +19,17 @@ class ServiceController extends Controller
         $services = auth()->user()->services;
 
         return view('services.index', compact('services'));
+    }
+
+    public function search()
+    {
+        $languages = Auth::user()->languages;
+
+        dd($languages);
+
+        // $services = Service::where('title', 'like', '%'.$request->input('search').'%')->get();
+
+        // return view('services.index', compact('services'));
     }
 
     /**
@@ -32,8 +45,9 @@ class ServiceController extends Controller
     public function create(): View
     {
         $languages = Language::all();
+        $categories = Category::all();
 
-        return view('service.create', compact('languages'));
+        return view('service.create', compact('languages', 'categories'));
     }
 
     /**
@@ -41,11 +55,15 @@ class ServiceController extends Controller
      */
     public function store(ServiceCreateRequest $request): RedirectResponse
     {
+
+        dd($request->all());
+
         $service = new Service();
         $service->title = $request->input('title');
         $service->description = $request->input('description');
         $service->price = $request->input('price');
         $service->file = $request->input('file');
+        $service->category_id = $request->input('category');
         $service->initial_language_id = $request->input('initial_language');
         $service->final_language_id = $request->input('final_language');
         $service->user_id = auth()->user()->id;

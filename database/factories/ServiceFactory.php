@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,8 @@ class ServiceFactory extends Factory
             'title' => fake()->jobTitle(),
             'description' => fake()->paragraph(),
             'price' => floatval(rand(20, 1000) . '.' . rand(0, 99)),
-            'file' => fake()->name(),
+            'file_id' => null,
+            'category_id' => Category::inRandomOrder()->first()->id,
             'initial_language_id' => Language::inRandomOrder()->first()->id,
             'final_language_id' => Language::inRandomOrder()->first()->id,
         ];

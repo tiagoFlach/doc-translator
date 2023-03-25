@@ -16,28 +16,40 @@
         <div>
 			<!-- Título -->
             <x-input-label for="title" :value="__('Título')" />
-            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" required autofocus />
+            <x-text-input id="title" name="title" type="text" :value="old('title')" class="mt-1 block w-full" required autocomplete="title" autofocus />
             <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
 		<div>
 			<!-- Descrição -->
 			<x-input-label for="description" :value="__('Descrição')" />
-			<x-textarea-input id="description" name="description" class="mt-1 block w-full" required />
+			<x-textarea-input id="description" name="description" :value="old('description')" class="mt-1 block w-full" autocomplete="description" required />
 			<x-input-error class="mt-2" :messages="$errors->get('description')" />
 		</div>
 
 		<div>
 			<!-- Preço -->
 			<x-input-label for="price" :value="__('Preço')" />
-			<x-text-input id="price" name="price" type="number" class="mt-1 block w-full" required />
+			<x-text-input id="price" name="price" type="number" :value="old('price')" class="mt-1 block w-full" autocomplete="price" required />
 			<x-input-error class="mt-2" :messages="$errors->get('price')" />
 		</div>
 
 		<div>
+			<!-- Categoria -->
+			<x-input-label for="category" :value="__('Categoria')" />
+			<x-select-input id="category" name="category" class="mt-1 block w-full" required>
+				<option value="" selected disabled hidden>{{ __('Selecione uma categoria') }}</option>
+				@foreach ($categories as $category)
+					<option value="{{ $category->id }}">{{ $category->name }}</option>
+				@endforeach
+			</x-select-input>
+			<x-input-error class="mt-2" :messages="$errors->get('category')" />
+		</div>
+
+		<div>
 			<!-- File -->
-			<x-input-label for="file" :value="__('File')" />
-			<x-textarea-input id="file" name="file" class="mt-1 block w-full" required />
+			<x-input-label for="file" :value="__('Arquivo')" />
+			<x-file-input id="file" name="file" :value="old('file')" class="mt-1 block w-full" required />
 			<x-input-error class="mt-2" :messages="$errors->get('file')" />
 		</div>
 
