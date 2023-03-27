@@ -80,7 +80,7 @@
                         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                             <li class="mr-2" role="presentation">
                                 <button class="inline-block p-4 border-b-2 rounded-t-lg" id="credit-card-tab" data-tabs-target="#credit-card" type="button" role="tab" aria-controls="credit-card" aria-selected="false">
-                                    Cartão de credito
+                                    Cartão de Crédito
                                 </button>
                             </li>
                             <li class="mr-2" role="presentation">

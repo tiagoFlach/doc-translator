@@ -65,9 +65,12 @@ class ServiceController extends Controller
         return view('service.pay', compact('service'));
     }
 
-    public function translation(Service $service): View
+    public function confirmPay(Service $service)
     {
-        return view('service.translation', compact('service'));
+        $service->is_paid = true;
+        $service->save();
+
+        return Redirect::route('service.show', $service);
     }
 
     public function startTranslate(Service $service): RedirectResponse
@@ -75,7 +78,17 @@ class ServiceController extends Controller
         $service->translator_id = auth()->user()->id;
         $service->save();
 
-        return Redirect::route('service.translation', $service);
+        return Redirect::route('service.show', $service);
+    }
+
+    public function addTranslation(Service $service, Request $request): RedirectResponse
+    {
+        // $service->target_file = $request->input('translation');
+
+        $service->is_completed = true;
+        $service->save();
+
+        return Redirect::route('service.show', $service);
     }
 
     /**

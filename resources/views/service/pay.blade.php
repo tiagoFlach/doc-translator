@@ -1,6 +1,6 @@
 <x-blank-layout>
     <p class="mb-1 text-xl">
-        {{ $service->user->name }}
+        {{ $service->translator->name }}
     </p>
     <h1 class="mb-10 text-4xl font-bold">
         {{ $service->title }}

@@ -28,8 +28,6 @@
                         <span class="title-font font-medium text-2xl text-gray-900">
                             $ {{ $service->price }}
                         </span>
-
-
                     </div>
                 </div>
             </div>

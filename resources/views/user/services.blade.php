@@ -35,6 +35,19 @@
                                     {{ __('Ver') }}
                                 </x-primary-button>
                             </a>
+
+                            @if ($service->isAuthor())
+                            <a href="{{ route('service.edit', $service->id) }}">
+                                <x-primary-button>
+                                    {{ __('Editar') }}
+                                </x-primary-button>
+                            </a>
+                            <a href="{{ route('service.destroy', $service->id) }}">
+                                <x-primary-button>
+                                    {{ __('Excluir') }}
+                                </x-primary-button>
+                            </a>
+                            @endif
                         </div>
                     </div>
                 </div>
