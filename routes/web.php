@@ -36,7 +36,6 @@ Route::controller(ServiceController::class)
     ->prefix('service')
     ->name('service.')
     ->group(function () {
-        // Route::get('/userservices', 'userServices')->name('user');
         Route::get('/search', 'search')->name('search');
         Route::get('/{service}/checkout', 'checkout')->name('checkout');
         Route::get('/{service}/pay', 'pay')->name('pay');

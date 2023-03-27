@@ -22,14 +22,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 @foreach ($services as $service)
                 <div class="p-6 text-gray-900">
-                    <div class="flex justify-between">
+                    <div class="flex flex-row justify-between">
                         <div>
                             <b>{{ $service->id }}</b>&nbsp;
                             {{ $service->title }}
 
                             <x-status-badge :service="$service" class="bg-indigo-100" />
                         </div>
-                        <div>
+                        <div class="flex flex-row space-x-1">
                             <a href="{{ route('service.show', $service->id) }}">
                                 <x-primary-button>
                                     {{ __('Ver') }}
@@ -38,15 +38,13 @@
 
                             @if ($service->isAuthor())
                             <a href="{{ route('service.edit', $service->id) }}">
-                                <x-primary-button>
-                                    {{ __('Editar') }}
-                                </x-primary-button>
+                                <x-edit-button></x-edit-button>
                             </a>
-                            <a href="{{ route('service.destroy', $service->id) }}">
-                                <x-primary-button>
-                                    {{ __('Excluir') }}
-                                </x-primary-button>
-                            </a>
+                            <form method="post" action="{{ route('service.destroy', $service->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <x-delete-button></x-delete-button>
+                            </form>
                             @endif
                         </div>
                     </div>

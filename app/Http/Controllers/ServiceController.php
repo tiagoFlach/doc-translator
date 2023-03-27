@@ -15,13 +15,6 @@ use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
-    public function userServices()
-    {
-        $services = auth()->user()->services;
-
-        return view('services.index', compact('services'));
-    }
-
     public function search(?ServiceSearchRequest $request): View
     {
         $languages = Auth::user()->languages;
@@ -96,6 +89,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
+        $services = auth()->user()->services;
+
+        return view('services.index', compact('services'));
     }
 
     /**
@@ -165,7 +161,11 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(Service $service): RedirectResponse
     {
+        $service->delete();
+
+        // return Redirect::route('services.index');
+        return Redirect::route('user.services');
     }
 }
