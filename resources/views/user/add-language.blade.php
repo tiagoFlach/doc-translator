@@ -9,8 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
+                    <header>
+                        <h2 class="text-lg font-medium text-gray-900">
+                            {{ __('Adicionar Idioma') }}
+                        </h2>
 
-                    <form method="post" action="" class="mt-6 space-y-6">
+                        <p class="mt-1 text-sm text-gray-600">
+                            {{ __("Adicione um idioma e o seu nível de conhecimento") }}
+                        </p>
+                    </header>
+
+                    <form method="post" action="{{ route('user.storeLanguage') }}" class="mt-6 space-y-6">
                         @csrf
                         @method('post')
 
@@ -39,7 +48,9 @@
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <x-primary-button>{{ __('Adicionar') }}</x-primary-button>
+                            <x-primary-button>
+                                {{ __('Adicionar') }}
+                            </x-primary-button>
                         </div>
                     </form>
 

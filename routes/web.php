@@ -62,6 +62,7 @@ Route::controller(UserController::class)
         Route::get('/services', 'services')->name('services');
         Route::get('/languages', 'languages')->name('languages');
         Route::get('/addLanguage', 'addLanguage')->name('addLanguage');
+        Route::post('/storeLanguage', 'storeLanguage')->name('storeLanguage');
     });
 Route::resource('user', UserController::class);
 

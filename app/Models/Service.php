@@ -81,8 +81,6 @@ class Service extends Model
         return ! $this->isCompleted() && $this->isPaid();
     }
 
-
-    
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
