@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     public function isAdmin(): bool
     {
-        return $this->role->id === Role::getAdminId();
+        return ! is_null($this->role) && $this->role->id === Role::getAdminId();
     }
 
     /**
@@ -59,7 +59,7 @@ class User extends Authenticatable
      */
     public function isTranslator(): bool
     {
-        return $this->role->id === Role::getTranslatorId();
+        return ! is_null($this->role) && $this->role->id === Role::getTranslatorId();
     }
 
     /**
@@ -67,7 +67,7 @@ class User extends Authenticatable
      */
     public function isClient(): bool
     {
-        return $this->role->id === Role::getClientId();
+        return ! is_null($this->role) && $this->role->id === Role::getClientId();
     }
 
     /**
