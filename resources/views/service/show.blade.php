@@ -10,7 +10,7 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <header class="mb-4 lg:mb-6 not-format">
-                        <h1 class="mb-1 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+                        <h1 class="mb-1 text-3xl font-extrabold leading-tight text-gray-900 lg:text-4xl dark:text-white">
                             {{ $service->title }}
                         </h1>
                         <x-language-badge :service="$service" class="bg-indigo-100" />
