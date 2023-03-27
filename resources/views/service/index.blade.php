@@ -50,7 +50,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-10">
             <div class="grid grid-cols-2 gap-4">
                 @foreach ($services as $service)
                 <div class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-xl md:flex-row">
@@ -111,6 +111,11 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ $services->onEachSide(1)->links() }}
+                </div>
             </div>
         </div>
     </div>

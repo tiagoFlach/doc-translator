@@ -41,6 +41,8 @@ Route::controller(ServiceController::class)
         Route::get('/{service}/checkout', 'checkout')->name('checkout');
         Route::get('/{service}/pay', 'pay')->name('pay');
         Route::get('/{service}/confirmPay', 'confirmPay')->name('confirmPay');
+        Route::get('/{service}/translation', 'translation')->name('translation');
+        Route::get('/{service}/startTranslate', 'startTranslate')->name('startTranslate');
     });
 Route::controller(ServiceController::class)
     ->prefix('service')

@@ -21,8 +21,12 @@ return new class extends Migration
             $table->string('title', 100);
             $table->text('description');
             $table->float('price', 8, 2);
-            $table->string('file')
-                ->nullable();
+            $table->string('source_file')
+                ->nullable()
+                ->default(null);
+            $table->string('target_file')
+                ->nullable()
+                ->default(null);
             $table->foreignIdFor(Category::class)
                 ->constrained();
             $table->foreignId('source_language_id')
@@ -33,6 +37,10 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users')
                 ->default(null);
+            $table->boolean('is_completed')
+                ->default(false);
+            $table->boolean('is_paid')
+                ->default(false);
             $table->timestamps();
         });
     }

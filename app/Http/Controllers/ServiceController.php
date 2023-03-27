@@ -27,7 +27,8 @@ class ServiceController extends Controller
         $languages = Auth::user()->languages;
         $categories = Category::all();
 
-        $services = Service::with('category', 'sourceLanguage', 'targetLanguage', 'user');
+        $services = Service::with('category', 'sourceLanguage', 'targetLanguage', 'user')
+            ->whereNull('translator_id');
 
         // Source Language
         if ($request->has('source_language')) {
@@ -62,6 +63,19 @@ class ServiceController extends Controller
         // return Redirect::route('services.index');
 
         return view('service.pay', compact('service'));
+    }
+
+    public function translation(Service $service): View
+    {
+        return view('service.translation', compact('service'));
+    }
+
+    public function startTranslate(Service $service): RedirectResponse
+    {
+        $service->translator_id = auth()->user()->id;
+        $service->save();
+
+        return Redirect::route('service.translation', $service);
     }
 
     /**
