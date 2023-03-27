@@ -29,7 +29,7 @@
                             $ {{ $service->price }}
                         </span>
 
-                        @if (Auth::user()->isTradutor && Auth::user()->hasServiceLanguage($service))
+                        @if (Auth::user()->isTranslator() && Auth::user()->hasServiceLanguages($service))
                         <a href="{{ route('service.checkout', $service->id) }}">
                             <x-primary-button class="ml-4">
                                 {{ __('Iniciar Tradução') }}

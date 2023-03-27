@@ -25,6 +25,7 @@ class ServiceController extends Controller
     public function search(?ServiceSearchRequest $request): View
     {
         $languages = Auth::user()->languages;
+        $categories = Category::all();
 
         $services = Service::with('category', 'sourceLanguage', 'targetLanguage', 'user');
 
@@ -45,7 +46,7 @@ class ServiceController extends Controller
 
         $services = $services->paginate(10);
 
-        return view('service.index', compact('services', 'languages'));
+        return view('service.index', compact('services', 'languages', 'categories'));
     }
 
     public function checkout(Service $service): View
