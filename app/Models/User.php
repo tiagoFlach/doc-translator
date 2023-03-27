@@ -87,6 +87,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Determine if the user has a language.
+     */
+    public function hasLanguage(int $languageId): bool
+    {
+        return $this->languages->contains($languageId);
+    }
+
+    /**
+     * Determine if the user has the languages of a service.
+     */
+    public function hasServiceLanguages(Service $service): bool
+    {
+        return $this->hasLanguage($service->source_language_id) && $this->hasLanguage($service->target_language_id);
+    }
+
+    /**
      * Get the services for the user.
      */
     public function services(): HasMany

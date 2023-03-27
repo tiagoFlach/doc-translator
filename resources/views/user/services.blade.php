@@ -32,9 +32,7 @@
                                 </x-primary-button>
                             </a>
                         </div>
-
                     </div>
-
                 </div>
 				@endforeach
             </div>

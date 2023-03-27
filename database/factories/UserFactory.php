@@ -62,10 +62,11 @@ class UserFactory extends Factory
 
 	public function language()
 	{
+		$german = Language::firstWhere('name', 'German')->id;
 		$english = Language::firstWhere('name', 'English')->id;
 		$portuguese = Language::firstWhere('name', 'Portuguese')->id;
 
-		return $this->afterCreating(function (User $user) use ($english, $portuguese) {
+		return $this->afterCreating(function (User $user) use ($english, $portuguese, $german) {
 			$languages = Language::inRandomOrder()
 				->limit(rand(1, 2))
 				->pluck('id')
@@ -96,7 +97,40 @@ class UserFactory extends Factory
 				array_push($languages, $portuguese);
 			}
 
+			// Adiciona alemão com 50% de chance
+			if (rand(0, 1) === 1) {
+				$german = [
+					'language_id' => $german,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				];
+				array_push($languages, $german);
+			}
+
 			$user->languages()->sync($languages);
+		});
+	}
+
+	public function defaultLanguages()
+	{
+		$german = Language::firstWhere('name', 'German')->id;
+		$english = Language::firstWhere('name', 'English')->id;
+		$portuguese = Language::firstWhere('name', 'Portuguese')->id;
+
+		return $this->afterCreating(function (User $user) use ($english, $portuguese, $german) {
+			$user->languages()->sync([
+				[
+					'language_id' => $german,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				],
+				[
+					'language_id' => $english,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				],
+				[
+					'language_id' => $portuguese,
+					'level' => array_rand(array_flip(Language::LEVELS)),
+				],
+			]);
 		});
 	}
 }

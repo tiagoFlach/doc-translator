@@ -10,6 +10,21 @@ class Service extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'price',
+        'file',
+        'source_language_id',
+        'target_language_id',
+        'translator_id',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -25,18 +40,13 @@ class Service extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function initialLanguage(): BelongsTo
+    public function sourceLanguage(): BelongsTo
     {
-        return $this->belongsTo(Language::class, 'initial_language_id');
+        return $this->belongsTo(Language::class, 'source_language_id');
     }
 
-    public function finalLanguage(): BelongsTo
+    public function targetLanguage(): BelongsTo
     {
-        return $this->belongsTo(Language::class, 'final_language_id');
-    }
-
-    public function file(): BelongsTo
-    {
-        return $this->belongsTo(File::class);
+        return $this->belongsTo(Language::class, 'target_language_id');
     }
 }

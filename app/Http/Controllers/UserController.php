@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,21 @@ class UserController extends Controller
         $services = auth()->user()->services;
 
         return view('user.services', compact('services'));
+    }
+
+    public function languages()
+    {
+        $languages = auth()->user()->languages;
+
+        return view('user.languages', compact('languages'));
+    }
+
+    public function addLanguage()
+    {
+        $languages = Language::all();
+        $levels = Language::LEVELS;
+
+        return view('user.add-language', compact('languages', 'levels'));
     }
 
     /**

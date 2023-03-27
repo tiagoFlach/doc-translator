@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto text-gray-800" />
                     </a>
                 </div>
 
@@ -20,9 +20,11 @@
                         {{ __('Meus Serviços') }}
                     </x-nav-link>
 
+                    @if (Auth::user()->isTranslator() || Auth::user()->isAdmin())
                     <x-nav-link :href="route('service.search')" :active="request()->routeIs('service.search')">
                         {{ __('Buscar Serviço') }}
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -46,12 +48,17 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @if (Auth::user()->isTranslator())
+                        <x-dropdown-link :href="route('user.languages')">
+                            {{ __('Idiomas') }}
+                        </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -78,14 +85,16 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            
+
             <x-responsive-nav-link :href="route('user.services')" :active="request()->routeIs('user.services')">
                 {{ __('Meus Serviços') }}
             </x-responsive-nav-link>
 
+            @if (Auth::user()->isTranslator() || Auth::user()->isAdmin())
             <x-responsive-nav-link :href="route('service.search')" :active="request()->routeIs('service.search')">
                 {{ __('Buscar Serviço') }}
             </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -100,12 +109,17 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
+                @if (Auth::user()->isTranslator())
+                <x-responsive-nav-link :href="route('user.languages')">
+                    {{ __('Idiomas') }}
+                </x-responsive-nav-link>
+                @endif
+
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

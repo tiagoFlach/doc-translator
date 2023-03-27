@@ -11,9 +11,9 @@ class Language extends Model
     use HasFactory;
 
     public const LEVELS = [
-        'beginner',
-        'intermediate',
-        'advanced',
+        'Beginner',
+        'Intermediate',
+        'Advanced',
     ];
 
     public function users(): BelongsToMany

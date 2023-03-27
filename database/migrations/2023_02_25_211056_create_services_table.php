@@ -21,15 +21,13 @@ return new class extends Migration
             $table->string('title', 100);
             $table->text('description');
             $table->float('price', 8, 2);
-            $table->foreignIdFor(File::class)
-                ->nullable()
-                ->constrained()
-                ->default(null);
+            $table->string('file')
+                ->nullable();
             $table->foreignIdFor(Category::class)
                 ->constrained();
-            $table->foreignId('initial_language_id')
+            $table->foreignId('source_language_id')
                 ->constrained('languages');
-            $table->foreignId('final_language_id')
+            $table->foreignId('target_language_id')
                 ->constrained('languages');
             $table->foreignId('translator_id')
                 ->nullable()

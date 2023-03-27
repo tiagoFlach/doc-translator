@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceCreateRequest;
+use App\Http\Requests\ServiceSearchRequest;
 use App\Models\Category;
 use App\Models\Language;
 use App\Models\Service;
@@ -21,15 +22,45 @@ class ServiceController extends Controller
         return view('services.index', compact('services'));
     }
 
-    public function search()
+    public function search(?ServiceSearchRequest $request): View
     {
         $languages = Auth::user()->languages;
 
-        dd($languages);
+        $services = Service::with('category', 'sourceLanguage', 'targetLanguage', 'user');
 
-        // $services = Service::where('title', 'like', '%'.$request->input('search').'%')->get();
+        // Source Language
+        if ($request->has('source_language')) {
+            $services = $services->where('source_language_id', $request->input('source_language'));
+        }
 
-        // return view('services.index', compact('services'));
+        // Target Language
+        if ($request->has('target_language')) {
+            $services = $services->where('target_language_id', $request->input('target_language'));
+        }
+
+        // Categoria
+        if ($request->has('category')) {
+            $services = $services->where('category_id', $request->input('category'));
+        }
+
+        $services = $services->paginate(10);
+
+        return view('service.index', compact('services', 'languages'));
+    }
+
+    public function checkout(Service $service): View
+    {
+        return view('service.checkout', compact('service'));
+    }
+
+    public function pay(Service $service)
+    {
+        // $service->translator_id = auth()->user()->id;
+        // $service->save();
+
+        // return Redirect::route('services.index');
+
+        return view('service.pay', compact('service'));
     }
 
     /**
@@ -55,17 +86,26 @@ class ServiceController extends Controller
      */
     public function store(ServiceCreateRequest $request): RedirectResponse
     {
+        // dd($request->all());
 
-        dd($request->all());
+        $filePath = null;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->storeAs(
+                'uploads',
+                $file->getClientOriginalName() . '-' . time() . '.' . $file->getClientOriginalExtension(),
+                'public'
+            );
+        }
 
         $service = new Service();
         $service->title = $request->input('title');
         $service->description = $request->input('description');
         $service->price = $request->input('price');
-        $service->file = $request->input('file');
+        $service->file = $filePath;
         $service->category_id = $request->input('category');
-        $service->initial_language_id = $request->input('initial_language');
-        $service->final_language_id = $request->input('final_language');
+        $service->source_language_id = $request->input('source_language');
+        $service->target_language_id = $request->input('target_language');
         $service->user_id = auth()->user()->id;
         $service->save();
 

@@ -56,25 +56,25 @@
 		<div class="flex flex-row gap-4">
 			<div class="basis-1/2">
 				<!-- Idioma Inicial -->
-				<x-input-label for="initial_language" :value="__('Idioma Inicial')" />
-				<x-select-input id="initial_language" name="initial_language" class="mt-1 block w-full" required>
+				<x-input-label for="source_language" :value="__('Idioma Inicial')" />
+				<x-select-input id="source_language" name="source_language" class="mt-1 block w-full" required>
 					<option value="" selected disabled hidden>{{ __('Selecione um idioma') }}</option>
 					@foreach ($languages as $language)
-						<option value="{{ $language->id }}">{{ $language->native_name }}</option>
+						<option value="{{ $language->id }}">{{ $language->name }}</option>
 					@endforeach
 				</x-select-input>
-				<x-input-error class="mt-2" :messages="$errors->get('initial_language')" />
+				<x-input-error class="mt-2" :messages="$errors->get('source_language')" />
 			</div>
 			<div class="basis-1/2">
 				<!-- Idioma Final -->
-				<x-input-label for="final_language" :value="__('Idioma Final')" />
-				<x-select-input id="final_language" name="final_language" class="mt-1 block w-full" required>
+				<x-input-label for="target_language" :value="__('Idioma Final')" />
+				<x-select-input id="target_language" name="target_language" class="mt-1 block w-full" required>
 					<option value="" selected disabled hidden>{{ __('Selecione um idioma') }}</option>
 					@foreach ($languages as $language)
-						<option value="{{ $language->id }}">{{ $language->native_name }}</option>
+						<option value="{{ $language->id }}">{{ $language->name }}</option>
 					@endforeach
 				</x-select-input>
-				<x-input-error class="mt-2" :messages="$errors->get('final_language')" />
+				<x-input-error class="mt-2" :messages="$errors->get('target_language')" />
 			</div>
 		</div>
 

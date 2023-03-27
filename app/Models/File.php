@@ -22,6 +22,11 @@ class File extends Model
         // 'url',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        dd($attributes);
+    }
+
     /**
      * Get the services for the file.
      */

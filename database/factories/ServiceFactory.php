@@ -20,12 +20,12 @@ class ServiceFactory extends Factory
     {
         return [
             'title' => fake()->jobTitle(),
-            'description' => fake()->paragraph(),
+            'description' => fake()->paragraphs(5, true),
             'price' => floatval(rand(20, 1000) . '.' . rand(0, 99)),
-            'file_id' => null,
+            'file' => null,
             'category_id' => Category::inRandomOrder()->first()->id,
-            'initial_language_id' => Language::inRandomOrder()->first()->id,
-            'final_language_id' => Language::inRandomOrder()->first()->id,
+            'source_language_id' => Language::inRandomOrder()->first()->id,
+            'target_language_id' => Language::inRandomOrder()->first()->id,
         ];
     }
 }

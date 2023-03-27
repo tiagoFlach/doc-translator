@@ -43,12 +43,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123'),
         ]);
 
-        $translator = User::create([
+        $translator = User::factory([
             'role_id' => Role::getTranslatorId(),
             'name' => 'Tradutor',
             'email' => 'tradutor@email.com',
             'password' => bcrypt('123'),
-        ]);        
+        ])
+        ->defaultLanguages()
+        ->create();
 
         $client = User::factory([
                 'role_id' => Role::getClientId(),

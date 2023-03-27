@@ -26,9 +26,10 @@ class ServiceCreateRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
-            'initial_language' => 'required|exists:languages,id',
-            'final_language' => 'required|exists:languages,id',
-            // 'file' => 'required|file|max:1024',
+            'category' => 'required|exists:categories,id',
+            // 'file' => 'required|mimes:pdf,doc,docx,txt,image|max:2048',
+            'source_language' => 'required|exists:languages,id',
+            'target_language' => 'required|exists:languages,id',
         ];
     }
 }
