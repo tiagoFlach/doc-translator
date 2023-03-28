@@ -20,7 +20,8 @@
                     <p class="mb-4 whitespace-pre-line">{{ $service->description }}</p>
 
                     <p>
-                        {{ $service->user->name }},
+                        <a href="mailto:{{ $service->user->email }}">{{ $service->user->name }},</a>
+
                         {{ $service->created_at->format('d/m/Y') }}
                     </p>
 
@@ -42,7 +43,7 @@
             @if ($service->hasTranslator() && ($service->isAuthor() || $service->isTranslator()))
             <div class="flex space-x-4">
                 <div class="w-1/2 h-full p-4 sm:p-8 shadow sm:rounded-lg space-y-6
-                    {{ $service->isAuthor() ? 'bg-white' : 'bg-gray-300' }}">
+                    {{ $service->isAuthor() && ! $service->isPayed() ? 'bg-white' : 'bg-gray-300' }}">
                     @if ($service->isAuthor())
                         @if ($service->isPaid())
                             @include ('service.partials.payed')
