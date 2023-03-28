@@ -24,12 +24,13 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex flex-row justify-between">
                         <div>
-                            <b>{{ $service->id }}</b>&nbsp;
-                            {{ $service->title }}
-
+                            <div class="text-lg mb-1 font-bold">
+                                {{ $service->title }}
+                            </div>
+                            <x-language-badge :service="$service" class="bg-indigo-100" />
                             <x-status-badge :service="$service" class="bg-indigo-100" />
                         </div>
-                        <div class="flex flex-row space-x-1">
+                        <div class="flex flex-row my-auto space-x-1">
                             <a href="{{ route('service.show', $service->id) }}">
                                 <x-primary-button>
                                     {{ __('Ver') }}

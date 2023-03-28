@@ -56,6 +56,11 @@ class Service extends Model
         return $this->translator_id !== null;
     }
 
+    public function hasSourceFile(): bool
+    {
+        return $this->source_file !== null;
+    }
+
     public function isTranslator(): bool
     {
         return $this->translator_id === auth()->id();

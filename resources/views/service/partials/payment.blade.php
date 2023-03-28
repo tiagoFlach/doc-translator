@@ -92,16 +92,8 @@
             </div>
             <div class="hidden items-center space-y-6" id="pix" role="tabpanel" aria-labelledby="pix-tab">
                 <!-- <img class="w-16 md:w-32 lg:w-48" src="..."> -->
-                <div class="text-center items-center">
+                <div class="flex justify-center">
                     {{ QrCode::size(200)->generate(route('service.pay', $service->id)) }}
-                </div>
-
-                <div>
-                    <a href="{{ route('service.pay', $service->id) }}">
-                        <x-primary-button>
-                            {{ __('Pagar') }}
-                        </x-primary-button>
-                    </a>
                 </div>
             </div>
         </div>

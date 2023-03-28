@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -50,11 +51,6 @@ class ServiceController extends Controller
 
     public function pay(Service $service)
     {
-        // $service->translator_id = auth()->user()->id;
-        // $service->save();
-
-        // return Redirect::route('services.index');
-
         return view('service.pay', compact('service'));
     }
 
@@ -63,7 +59,11 @@ class ServiceController extends Controller
         $service->is_paid = true;
         $service->save();
 
-        return Redirect::route('service.show', $service);
+        if (auth()->check() && ($service->isAuthor() || $service->isTranslator())) {
+            return Redirect::route('service.show', $service);
+        } else {
+            return Redirect::route('/');
+        }
     }
 
     public function startTranslate(Service $service): RedirectResponse
@@ -76,9 +76,18 @@ class ServiceController extends Controller
 
     public function addTranslation(Service $service, Request $request): RedirectResponse
     {
-        // $service->target_file = $request->input('translation');
+        $filePath = null;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filePath = $file->storeAs(
+                'uploads',
+                $service->user_id . '_' . Str::camel($service->title) . '_' . time()  . '_translation' . '.' . $file->getClientOriginalExtension(), 
+                'public'
+            );
+        }
 
         $service->is_completed = true;
+        $service->target_file = $filePath;
         $service->save();
 
         return Redirect::route('service.show', $service);
@@ -110,14 +119,12 @@ class ServiceController extends Controller
      */
     public function store(ServiceCreateRequest $request): RedirectResponse
     {
-        // dd($request->all());
-
         $filePath = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $filePath = $file->storeAs(
                 'uploads',
-                $file->getClientOriginalName() . '-' . time() . '.' . $file->getClientOriginalExtension(),
+                $request->user()->id . '_' . Str::camel($request->input('title')) . '_' . time() . '.' . $file->getClientOriginalExtension(), 
                 'public'
             );
         }
@@ -126,7 +133,7 @@ class ServiceController extends Controller
         $service->title = $request->input('title');
         $service->description = $request->input('description');
         $service->price = $request->input('price');
-        $service->file = $filePath;
+        $service->source_file = $filePath;
         $service->category_id = $request->input('category');
         $service->source_language_id = $request->input('source_language');
         $service->target_language_id = $request->input('target_language');
@@ -149,6 +156,10 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
+        $languages = Language::all();
+        $categories = Category::all();
+
+        return view('service.edit', compact('service', 'languages', 'categories')); 
     }
 
     /**
@@ -156,6 +167,16 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+        $service->title = $request->input('title');
+        $service->description = $request->input('description');
+        $service->price = $request->input('price');
+        $service->source_file = $request->input('file');
+        $service->category_id = $request->input('category');
+        $service->source_language_id = $request->input('source_language');
+        $service->target_language_id = $request->input('target_language');
+        $service->save();
+
+        return Redirect::route('service.show', $service->id)->with('status', 'service-updated');
     }
 
     /**

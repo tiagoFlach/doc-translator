@@ -21,9 +21,23 @@
 
                     <p>
                         <a href="mailto:{{ $service->user->email }}">{{ $service->user->name }},</a>
-
                         {{ $service->created_at->format('d/m/Y') }}
                     </p>
+
+                    @if ($service->isAuthor() && ! $service->isPaid() && $service->hasSourceFile())
+                    <div class="mt-10 flex flex-row space-x-2">
+                        <a href="{{ url("storage/{$service->source_file}") }}">
+                            <x-primary-button>
+                                {{ __('Ver Arquivo') }}
+                            </x-primary-button>
+                        </a>
+                        <a href="{{ url("storage/{$service->source_file}") }}" download="{{ str_replace('uploads/', '', $service->source_file) }}">
+                            <x-primary-button>
+                                {{ __('Download Arquivo') }}
+                            </x-primary-button>
+                        </a>
+                    </div>
+                    @endif
 
                     <div class="flex border-t-[1px] pt-4 mt-6 justify-between">
                         <span class="title-font font-medium text-2xl text-gray-900">
@@ -43,7 +57,7 @@
             @if ($service->hasTranslator() && ($service->isAuthor() || $service->isTranslator()))
             <div class="flex space-x-4">
                 <div class="w-1/2 h-full p-4 sm:p-8 shadow sm:rounded-lg space-y-6
-                    {{ $service->isAuthor() && ! $service->isPayed() ? 'bg-white' : 'bg-gray-300' }}">
+                    {{ $service->isAuthor() && ! $service->isPaid() ? 'bg-white' : 'bg-gray-300' }}">
                     @if ($service->isAuthor())
                         @if ($service->isPaid())
                             @include ('service.partials.payed')

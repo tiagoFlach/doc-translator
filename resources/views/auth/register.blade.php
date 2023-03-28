@@ -14,8 +14,8 @@
             <x-input-label for="role" :value="__('User Type')" />
             <x-select-input id="role" class="block mt-1 w-full" name="role" required>
                 <option value="" selected disabled hidden>{{ __('Select a user type') }}</option>
-                <option value="client">{{ __('Client') }}</option>
-                <option value="translator">{{ __('Translator') }}</option>
+                <option value="client" {{ old('role') == 'client' ? 'selected' : null }} >{{ __('Client') }}</option>
+                <option value="translator"{{ old('role') == 'translator' ? 'selected' : null }} >{{ __('Translator') }}</option>
             </x-select-input>
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>

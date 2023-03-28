@@ -46,7 +46,7 @@ Route::controller(ServiceController::class)
         Route::get('/{service}/pay', 'pay')->name('pay');
         Route::get('/{service}/confirmPay', 'confirmPay')->name('confirmPay');
     });
-Route::resource('service', ServiceController::class);
+Route::resource('service', ServiceController::class)->middleware('auth');
 
 // User
 Route::controller(UserController::class)
@@ -59,6 +59,6 @@ Route::controller(UserController::class)
         Route::get('/addLanguage', 'addLanguage')->name('addLanguage');
         Route::post('/storeLanguage', 'storeLanguage')->name('storeLanguage');
     });
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->middleware('auth');
 
 require __DIR__ . '/auth.php';

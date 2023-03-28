@@ -7,7 +7,7 @@
         {{ __("Forneça o arquio traduzido para que o serviço possa ser concluído.") }}
     </p>
 </header>
-<form method="post" action="{{ route('service.addTranslation', $service) }}" class="mt-6 space-y-6">
+<form method="post" action="{{ route('service.addTranslation', $service) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
     @csrf
     @method('post')
     <div>

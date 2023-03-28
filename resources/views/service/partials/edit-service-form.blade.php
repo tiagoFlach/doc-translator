@@ -9,14 +9,14 @@
         </p>
     </header>
 
-	<form method="post" action="{{ route('service.store') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+	<form method="post" action="{{ route('service.update', $service) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
-        @method('post')
+        @method('patch')
 
         <div>
 			<!-- Título -->
             <x-input-label for="title" :value="__('Título')" />
-            <x-text-input id="title" name="title" type="text" :value="old('title')" class="mt-1 block w-full" required autocomplete="title" autofocus />
+            <x-text-input id="title" name="title" type="text" :value="old('title', $service->title)" class="mt-1 block w-full" required autocomplete="title" autofocus />
             <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
@@ -24,7 +24,7 @@
 			<!-- Descrição -->
 			<x-input-label for="description" :value="__('Descrição')" />
 			<x-textarea-input id="description" name="description"  class="mt-1 block w-full" autocomplete="description" required>
-				{{ old('description') }}
+				{{ old('description', $service->description) }}
 			</x-textarea-input>
 			<x-input-error class="mt-2" :messages="$errors->get('description')" />
 		</div>
@@ -32,7 +32,7 @@
 		<div>
 			<!-- Preço -->
 			<x-input-label for="price" :value="__('Preço')" />
-			<x-text-input id="price" name="price" type="number" :value="old('price')" class="mt-1 block w-full" autocomplete="price" required />
+			<x-text-input type="number" id="price" name="price" :value="old('price', $service->price)" class="mt-1 block w-full" required />
 			<x-input-error class="mt-2" :messages="$errors->get('price')" />
 		</div>
 
@@ -42,7 +42,7 @@
 			<x-select-input id="category" name="category" class="mt-1 block w-full" required>
 				<option value="" selected disabled hidden>{{ __('Selecione uma categoria') }}</option>
 				@foreach ($categories as $category)
-					<option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : null }}>{{ $category->name }}</option>
+					<option value="{{ $category->id }}" {{ old('category', $service->category_id) == $category->id ? 'selected' : null }}>{{ $category->name }}</option>
 				@endforeach
 			</x-select-input>
 			<x-input-error class="mt-2" :messages="$errors->get('category')" />
@@ -51,7 +51,7 @@
 		<div>
 			<!-- File -->
 			<x-input-label for="file" :value="__('Arquivo')" />
-			<x-file-input id="file" name="file" :value="old('file')" class="mt-1 block w-full" required />
+			<x-file-input id="file" name="file" :value="old('file', $service->source_file)" class="mt-1 block w-full" required />
 			<x-input-error class="mt-2" :messages="$errors->get('file')" />
 		</div>
 
@@ -62,7 +62,7 @@
 				<x-select-input id="source_language" name="source_language" class="mt-1 block w-full" required>
 					<option value="" selected disabled hidden>{{ __('Selecione um idioma') }}</option>
 					@foreach ($languages as $language)
-						<option value="{{ $language->id }}" {{ old('source_language') == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
+						<option value="{{ $language->id }}" {{ old('source_language', $service->source_language_id) == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
 					@endforeach
 				</x-select-input>
 				<x-input-error class="mt-2" :messages="$errors->get('source_language')" />
@@ -73,7 +73,7 @@
 				<x-select-input id="target_language" name="target_language" class="mt-1 block w-full" required>
 					<option value="" selected disabled hidden>{{ __('Selecione um idioma') }}</option>
 					@foreach ($languages as $language)
-						<option value="{{ $language->id }}" {{ old('target_language') == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
+						<option value="{{ $language->id }}" {{ old('target_language', $service->target_language_id) == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
 					@endforeach
 				</x-select-input>
 				<x-input-error class="mt-2" :messages="$errors->get('target_language')" />
@@ -81,17 +81,7 @@
 		</div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Criar') }}</x-primary-button>
-
-            @if (session('status') === 'service-created')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Criado.') }}</p>
-            @endif
+            <x-primary-button>{{ __('Atualizar') }}</x-primary-button>
         </div>
     </form>
 </section>

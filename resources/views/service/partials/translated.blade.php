@@ -5,17 +5,17 @@
 </div>
 <div class="flex gap-4">
     <div class="w-1/2">
-        <a href="">
-            <x-primary-button>
-                {{ __('Ver Arquivo') }}
-            </x-primary-button>
-        </a>
+    <a href="{{ url("storage/{$service->target_file}") }}">
+        <x-primary-button>
+            {{ __('Ver Arquivo') }}
+        </x-primary-button>
+    </a>
     </div>
     <div class="w-1/2">
-        <a href="">
-            <x-primary-button>
-                {{ __('Download Arquivo') }}
-            </x-primary-button>
-        </a>
+    <a href="{{ url("storage/{$service->target_file}") }}" download="{{ str_replace('uploads/', '', $service->target_file) }}">
+        <x-primary-button>
+            {{ __('Download Arquivo') }}
+        </x-primary-button>
+    </a>
     </div>
 </div>

@@ -28,8 +28,8 @@
         @endif
 
         <!-- Page Content -->
-        <main class="flex h-full items-center justify-center">
-            <div class="p-5  text-center align-middle  ">
+        <main class="flex h-screen bg-slate-100 items-center justify-center">
+            <div class="p-5 my-auto text-center align-middle  ">
                 {{ $slot }}
             </div>
         </main>
