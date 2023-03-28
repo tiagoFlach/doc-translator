@@ -11,8 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
@@ -61,9 +61,8 @@ class ServiceController extends Controller
 
         if (auth()->check() && ($service->isAuthor() || $service->isTranslator())) {
             return Redirect::route('service.show', $service);
-        } else {
-            return Redirect::route('/');
         }
+        return Redirect::route('/');
     }
 
     public function startTranslate(Service $service): RedirectResponse
@@ -81,7 +80,7 @@ class ServiceController extends Controller
             $file = $request->file('file');
             $filePath = $file->storeAs(
                 'uploads',
-                $service->user_id . '_' . Str::camel($service->title) . '_' . time()  . '_translation' . '.' . $file->getClientOriginalExtension(), 
+                $service->user_id . '_' . Str::camel($service->title) . '_' . time()  . '_translation' . '.' . $file->getClientOriginalExtension(),
                 'public'
             );
         }
@@ -124,7 +123,7 @@ class ServiceController extends Controller
             $file = $request->file('file');
             $filePath = $file->storeAs(
                 'uploads',
-                $request->user()->id . '_' . Str::camel($request->input('title')) . '_' . time() . '.' . $file->getClientOriginalExtension(), 
+                $request->user()->id . '_' . Str::camel($request->input('title')) . '_' . time() . '.' . $file->getClientOriginalExtension(),
                 'public'
             );
         }
@@ -159,7 +158,7 @@ class ServiceController extends Controller
         $languages = Language::all();
         $categories = Category::all();
 
-        return view('service.edit', compact('service', 'languages', 'categories')); 
+        return view('service.edit', compact('service', 'languages', 'categories'));
     }
 
     /**
