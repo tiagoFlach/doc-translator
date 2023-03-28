@@ -29,7 +29,7 @@ class ServiceCreateRequest extends FormRequest
             'category' => 'required|exists:categories,id',
             // 'file' => 'required|mimes:pdf,doc,docx,txt,image|max:2048',
             'source_language' => 'required|exists:languages,id',
-            'target_language' => 'required|exists:languages,id',
+            'target_language' => 'required|exists:languages,id|different:source_language',
         ];
     }
 }

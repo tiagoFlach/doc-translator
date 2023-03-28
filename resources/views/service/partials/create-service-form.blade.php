@@ -23,7 +23,9 @@
 		<div>
 			<!-- Descrição -->
 			<x-input-label for="description" :value="__('Descrição')" />
-			<x-textarea-input id="description" name="description" :value="old('description')" class="mt-1 block w-full" autocomplete="description" required />
+			<x-textarea-input id="description" name="description"  class="mt-1 block w-full" autocomplete="description" required>
+				{{ old('description') }}
+			</x-textarea-input>
 			<x-input-error class="mt-2" :messages="$errors->get('description')" />
 		</div>
 
@@ -40,7 +42,7 @@
 			<x-select-input id="category" name="category" class="mt-1 block w-full" required>
 				<option value="" selected disabled hidden>{{ __('Selecione uma categoria') }}</option>
 				@foreach ($categories as $category)
-					<option value="{{ $category->id }}">{{ $category->name }}</option>
+					<option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : null }}>{{ $category->name }}</option>
 				@endforeach
 			</x-select-input>
 			<x-input-error class="mt-2" :messages="$errors->get('category')" />
@@ -60,7 +62,7 @@
 				<x-select-input id="source_language" name="source_language" class="mt-1 block w-full" required>
 					<option value="" selected disabled hidden>{{ __('Selecione um idioma') }}</option>
 					@foreach ($languages as $language)
-						<option value="{{ $language->id }}">{{ $language->name }}</option>
+						<option value="{{ $language->id }}" {{ old('source_language') == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
 					@endforeach
 				</x-select-input>
 				<x-input-error class="mt-2" :messages="$errors->get('source_language')" />
@@ -71,7 +73,7 @@
 				<x-select-input id="target_language" name="target_language" class="mt-1 block w-full" required>
 					<option value="" selected disabled hidden>{{ __('Selecione um idioma') }}</option>
 					@foreach ($languages as $language)
-						<option value="{{ $language->id }}">{{ $language->name }}</option>
+						<option value="{{ $language->id }}" {{ old('target_language') == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
 					@endforeach
 				</x-select-input>
 				<x-input-error class="mt-2" :messages="$errors->get('target_language')" />
