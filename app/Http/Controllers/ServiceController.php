@@ -62,7 +62,7 @@ class ServiceController extends Controller
         if (auth()->check() && ($service->isAuthor() || $service->isTranslator())) {
             return Redirect::route('service.show', $service);
         }
-        return Redirect::route('/');
+        return view('thankyou');
     }
 
     public function startTranslate(Service $service): RedirectResponse
