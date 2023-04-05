@@ -1,4 +1,5 @@
-<div class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-xl md:flex-row">
+<!-- <div class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-xl md:flex-row"> -->
+<div class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:flex-row">
     @if ($service->category->name == 'Medic')
     <div class="flex items-center justify-center h-24 md:h-full w-full md:w-32 rounded-t-lg md:rounded-none md:rounded-l-lg bg-gradient-to-br from-cyan-500/50 to-blue-500/50">
         <div>

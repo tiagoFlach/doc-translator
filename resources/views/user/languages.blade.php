@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between h-8.5">
-            <div>
-                <h2 class="font-semibold text-gray-800 text-xl leading-8">
+        <div class="flex justify-between h-[42px]">
+            <div class="my-auto">
+                <h2 class="font-semibold text-gray-800 text-2xl leading-8">
                     {{ __('Meus Idiomas') }}
                 </h2>
             </div>

@@ -15,4 +15,4 @@ LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=debug
 SESSION_DRIVER=file
 SESSION_LIFETIME=120
-NIXPACKS_BUILD_CMD=composer install --optimize-autoloader && php artisan optimize && php artisan migrate:fresh --force --seed && npm install && npm run build && php artisan cache:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache
+NIXPACKS_BUILD_CMD=composer install --optimize-autoloader && php artisan optimize && php artisan migrate:fresh --force --seed && php artisan storage:link && npm install && npm run build && php artisan cache:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache

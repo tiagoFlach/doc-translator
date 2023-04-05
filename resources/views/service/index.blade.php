@@ -1,20 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between h-8.5">
-            <div>
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex flex-col md:flex-row justify-between min-h-[42px] gap-y-4">
+            <div class="my-auto">
+                <h2 class="font-semibold text-gray-800 text-2xl leading-8">
                     {{ __('Serviços') }}
                 </h2>
             </div>
-            <form method="get" action="{{ route('service.search') }}">
+            <form method="get" id="search-form" action="{{ route('service.search') }}">
                 <div class="flex flex-row space-x-2">
+
+                    <button type="reset" class="rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </button>
 
                     <div>
                         <!-- Source Language -->
                         <x-select-input id="source_language" name="source_language" class="block w-full">
-                            <option value="" selected disabled hidden>{{ __('idioma Inicial') }}</option>
+                            <option value="" selected disabled hidden>{{ __('Idioma Inicial') }}</option>
                             @foreach ($languages as $language)
-                            <option value="{{ $language->id }}">{{ $language->name }}</option>
+                            <option value="{{ $language->id }}" {{ request()->input('source_language') == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
                             @endforeach
                         </x-select-input>
                     </div>
@@ -22,9 +28,9 @@
                     <div>
                         <!-- Target Language -->
                         <x-select-input id="target_language" name="target_language" class="block w-full">
-                            <option value="" selected disabled hidden>{{ __('idioma Final') }}</option>
+                            <option value="" selected disabled hidden>{{ __('Idioma Final') }}</option>
                             @foreach ($languages as $language)
-                            <option value="{{ $language->id }}">{{ $language->name }}</option>
+                            <option value="{{ $language->id }}" {{ request()->input('target_language') == $language->id ? 'selected' : null }}>{{ $language->name }}</option>
                             @endforeach
                         </x-select-input>
                     </div>
@@ -34,14 +40,14 @@
                         <x-select-input id="category" name="category" class="block w-full">
                             <option value="" selected disabled hidden>{{ __('Categoria') }}</option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ request()->input('category') == $category->id ? 'selected' : null }}>{{ $category->name }}</option>
                             @endforeach
                         </x-select-input>
                     </div>
 
                     <button type="submit" class="rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" stroke-width="1.5" class="w-6 h-6">
-                            <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6 0-33.9zM208 336c-70.7 0-128-57.2-128-128s57.2-128 128-128 128 57.2 128 128-57.2 128-128 128z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
                     </button>
                 </div>
@@ -58,9 +64,25 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    {{ $services->onEachSide(1)->links() }}
+                    {{ $services->onEachSide(1)->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        
+        const form = document.getElementById('search-form');
+        const selects = form.querySelectorAll('select');
+
+        form.addEventListener('reset', (event) => {
+            event.preventDefault();
+            form.reset();
+            selects.forEach((select) => {
+                select.selectedIndex = 0;
+            });
+        });
+    </script>
+    @endpush
 </x-app-layout>
