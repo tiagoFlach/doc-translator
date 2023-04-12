@@ -7,7 +7,7 @@
                 </h2>
             </div>
 
-            <div>
+            <div class="my-auto">
                 <x-header-button :href="route('user.addLanguage')">
                     {{ __('Adicionar Idioma') }}
                 </x-header-button>

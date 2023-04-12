@@ -8,11 +8,11 @@
             </div>
 
             @if (Auth::user()->isClient())
-            <div>
-                <x-header-button :href="route('service.create')">
-                    {{ __('Criar Serviço') }}
-                </x-header-button>
-            </div>
+                <div class="my-auto">
+                    <x-header-button :href="route('service.create')">
+                        {{ __('Criar Serviço') }}
+                    </x-header-button>
+                </div>
             @endif
         </div>
     </x-slot>
