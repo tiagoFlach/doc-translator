@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     private const RANDOM = 1;
+
     private const MEDIC = 2;
+
     private const STUDY = 3;
 
     protected $fillable = [

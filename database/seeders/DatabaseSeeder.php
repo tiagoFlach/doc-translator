@@ -68,27 +68,27 @@ class DatabaseSeeder extends Seeder
             ->hasServices(5)
             ->hasServices([
                 'source_language_id' => $english->id,
-                'target_language_id' => $portuguese->id
+                'target_language_id' => $portuguese->id,
             ])
             ->hasServices([
                 'source_language_id' => $english->id,
-                'target_language_id' => $german->id
+                'target_language_id' => $german->id,
             ])
             ->hasServices([
                 'source_language_id' => $german->id,
-                'target_language_id' => $english->id
+                'target_language_id' => $english->id,
             ])
             ->hasServices([
                 'source_language_id' => $german->id,
-                'target_language_id' => $portuguese->id
+                'target_language_id' => $portuguese->id,
             ])
             ->hasServices([
                 'source_language_id' => $portuguese->id,
-                'target_language_id' => $english->id
+                'target_language_id' => $english->id,
             ])
             ->hasServices([
                 'source_language_id' => $portuguese->id,
-                'target_language_id' => $german->id
+                'target_language_id' => $german->id,
             ])
             ->create();
 

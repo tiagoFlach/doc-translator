@@ -45,7 +45,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'ar',
             'name' => 'Arabic',
-            'native_name' => 'العربية'
+            'native_name' => 'العربية',
         ]);
         // Language::create([
         //     'code' => 'an',
@@ -160,7 +160,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'zh',
             'name' => 'Chinese',
-            'native_name' => '中文 (Zhōngwén), 汉语, 漢語'
+            'native_name' => '中文 (Zhōngwén), 汉语, 漢語',
         ]);
         // Language::create([
         //     'code' => 'cv',
@@ -210,7 +210,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'en',
             'name' => 'English',
-            'native_name' => 'English'
+            'native_name' => 'English',
         ]);
         // Language::create([
         //     'code' => 'eo',
@@ -245,7 +245,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'fr',
             'name' => 'French',
-            'native_name' => 'français, langue française'
+            'native_name' => 'français, langue française',
         ]);
         // Language::create([
         //     'code' => 'ff',
@@ -265,7 +265,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'de',
             'name' => 'German',
-            'native_name' => 'Deutsch'
+            'native_name' => 'Deutsch',
         ]);
         // Language::create([
         //     'code' => 'el',
@@ -325,7 +325,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'id',
             'name' => 'Indonesian',
-            'native_name' => 'Bahasa Indonesia'
+            'native_name' => 'Bahasa Indonesia',
         ]);
         // Language::create([
         //     'code' => 'ie',
@@ -360,7 +360,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'it',
             'name' => 'Italian',
-            'native_name' => 'Italiano'
+            'native_name' => 'Italiano',
         ]);
         // Language::create([
         //     'code' => 'iu',
@@ -370,7 +370,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'ja',
             'name' => 'Japanese',
-            'native_name' => '日本語 (にほんご／にっぽんご)'
+            'native_name' => '日本語 (にほんご／にっぽんご)',
         ]);
         // Language::create([
         //     'code' => 'jv',
@@ -650,7 +650,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'pt',
             'name' => 'Portuguese',
-            'native_name' => 'Português'
+            'native_name' => 'Português',
         ]);
         // Language::create([
         //     'code' => 'qu',
@@ -675,7 +675,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'ru',
             'name' => 'Russian',
-            'native_name' => 'русский язык'
+            'native_name' => 'русский язык',
         ]);
         // Language::create([
         //     'code' => 'sa',
@@ -750,7 +750,7 @@ class LanguageSeeder extends Seeder
         Language::create([
             'code' => 'es',
             'name' => 'Spanish; Castilian',
-            'native_name' => 'español, castellano'
+            'native_name' => 'español, castellano',
         ]);
         // Language::create([
         //     'code' => 'su',

@@ -13,9 +13,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
 
-            <div class="inline-flex space-x-4 p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="inline-flex space-x-4 p-4 sm:p-8 bg-white shadow-sm sm:rounded-lg">
 
-                <div class="p-8 w-1/2 h-full rounded bg-gray-200">
+                <div class="p-8 w-1/2 h-full rounded-sm bg-gray-200">
                     <header class="mb-8 lg:mb-6 not-format">
                         <h1 class="text-3xl font-black">Resumo do Pedido</h1>
                     </header>
@@ -69,12 +69,12 @@
                     </div>
                     <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-700 dark:text-gray-400">
                         <li class="w-full">
-                            <a href="#" class="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 focus:ring-blue-300 active focus:outline-none dark:bg-gray-700 dark:text-white" aria-current="page">
+                            <a href="#" class="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 focus:ring-blue-300 active focus:outline-hidden dark:bg-gray-700 dark:text-white" aria-current="page">
                                 Cartão de Crédito
                             </a>
                         </li>
                         <li class="w-full">
-                            <a href="#" class="inline-block w-full p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <a href="#" class="inline-block w-full p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-hidden dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
                                 PIX
                             </a>
                         </li>

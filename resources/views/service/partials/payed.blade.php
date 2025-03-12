@@ -1,4 +1,4 @@
-<div class="p-8 w-full text-center rounded bg-gray-300">
+<div class="p-8 w-full text-center rounded-sm bg-gray-300">
     <header class="not-format">
         <h1 class="text-2xl font-black">Serviço Pago!</h1>
     </header>

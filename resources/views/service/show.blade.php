@@ -11,7 +11,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white shadow-sm sm:rounded-lg">
                 <div class="max-w-xl">
                     <header class="mb-4 lg:mb-6 not-format">
                         <h1 class="mb-1 text-3xl font-extrabold leading-tight text-gray-900 lg:text-4xl dark:text-white">
@@ -100,7 +100,7 @@
                 @endif
             </div>
             @if ($service->isCompleted())
-            <div class="text-center text-slate-600 uppercase p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="text-center text-slate-600 uppercase p-4 sm:p-8 bg-white shadow-sm sm:rounded-lg">
                 O tradutor receberá o pagamento em até 24 horas.
             </div>
             @endif

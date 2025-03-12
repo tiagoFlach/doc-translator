@@ -61,4 +61,4 @@ Route::controller(UserController::class)
     });
 Route::resource('user', UserController::class)->middleware('auth');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

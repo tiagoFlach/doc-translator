@@ -62,6 +62,7 @@ class ServiceController extends Controller
         if (auth()->check() && ($service->isAuthor() || $service->isTranslator())) {
             return Redirect::route('service.show', $service);
         }
+
         return view('thankyou');
     }
 
@@ -80,7 +81,7 @@ class ServiceController extends Controller
             $file = $request->file('file');
             $filePath = $file->storeAs(
                 'uploads',
-                $service->user_id . '_' . Str::camel($service->title) . '_' . time()  . '_translation' . '.' . $file->getClientOriginalExtension(),
+                $service->user_id.'_'.Str::camel($service->title).'_'.time().'_translation'.'.'.$file->getClientOriginalExtension(),
                 'public'
             );
         }
@@ -123,12 +124,12 @@ class ServiceController extends Controller
             $file = $request->file('file');
             $filePath = $file->storeAs(
                 'uploads',
-                $request->user()->id . '_' . Str::camel($request->input('title')) . '_' . time() . '.' . $file->getClientOriginalExtension(),
+                $request->user()->id.'_'.Str::camel($request->input('title')).'_'.time().'.'.$file->getClientOriginalExtension(),
                 'public'
             );
         }
 
-        $service = new Service();
+        $service = new Service;
         $service->title = $request->input('title');
         $service->description = $request->input('description');
         $service->price = $request->input('price');

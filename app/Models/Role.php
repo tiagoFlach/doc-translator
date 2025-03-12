@@ -11,7 +11,9 @@ class Role extends Model
     use HasFactory;
 
     private const ADMIN = 1;
+
     private const TRANSLATOR = 2;
+
     private const CLIENT = 3;
 
     protected $fillable = [

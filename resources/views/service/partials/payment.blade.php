@@ -1,5 +1,5 @@
 <div class="flex flex-col space-y-10">
-    <div class="p-8 w-full rounded bg-gray-200">
+    <div class="p-8 w-full rounded-sm bg-gray-200">
         <header class="mb-8 lg:mb-6 not-format">
             <h1 class="text-3xl font-black">Resumo do Serviço</h1>
         </header>
