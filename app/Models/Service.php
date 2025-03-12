@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Service extends Model
 {
@@ -13,7 +14,7 @@ class Service extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'title',
@@ -43,7 +44,7 @@ class Service extends Model
 
     public function isAuthor(): bool
     {
-        return $this->user_id === auth()->id();
+        return $this->user_id === Auth::id();
     }
 
     public function translator(): BelongsTo
@@ -63,7 +64,7 @@ class Service extends Model
 
     public function isTranslator(): bool
     {
-        return $this->translator_id === auth()->id();
+        return $this->translator_id === Auth::id();
     }
 
     public function isCompletedAndPaid(): bool
