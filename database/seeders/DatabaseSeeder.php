@@ -8,6 +8,7 @@ use App\Models\Language;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,46 +32,63 @@ class DatabaseSeeder extends Seeder
             ->translator()
             ->language()
             ->create();
-            
+
         User::factory(100)
             ->client()
             ->hasServices(3)
             ->create();
 
-        $admin = User::create([
+        $admin = User::factory([
             'role_id' => Role::getAdminId(),
             'name' => 'Administrador',
             'email' => 'admin@email.com',
-            'password' => bcrypt('123'),
-        ]);
+            'password' => Hash::make('123'),
+        ])
+            ->create();
 
         $translator = User::factory([
             'role_id' => Role::getTranslatorId(),
             'name' => 'Tradutor',
             'email' => 'tradutor@email.com',
-            'password' => bcrypt('123'),
+            'password' => Hash::make('123'),
         ])
-        ->defaultLanguages()
-        ->create();
+            ->defaultLanguages()
+            ->create();
 
         $german = Language::where('code', 'de')->first();
         $english = Language::where('code', 'en')->first();
         $portuguese = Language::where('code', 'pt')->first();
 
         $client = User::factory([
-                'role_id' => Role::getClientId(),
-                'name' => 'Cliente',
-                'email' => 'cliente@email.com',
-                'password' => bcrypt('123'),
-            ])
+            'role_id' => Role::getClientId(),
+            'name' => 'Cliente',
+            'email' => 'cliente@email.com',
+            'password' => Hash::make('123'),
+        ])
             ->hasServices(5)
             ->hasServices([
-                'source_language_id' => $english->id, 
+                'source_language_id' => $english->id,
                 'target_language_id' => $portuguese->id
             ])
             ->hasServices([
-                'source_language_id' => $german->id, 
+                'source_language_id' => $english->id,
+                'target_language_id' => $german->id
+            ])
+            ->hasServices([
+                'source_language_id' => $german->id,
+                'target_language_id' => $english->id
+            ])
+            ->hasServices([
+                'source_language_id' => $german->id,
                 'target_language_id' => $portuguese->id
+            ])
+            ->hasServices([
+                'source_language_id' => $portuguese->id,
+                'target_language_id' => $english->id
+            ])
+            ->hasServices([
+                'source_language_id' => $portuguese->id,
+                'target_language_id' => $german->id
             ])
             ->create();
 

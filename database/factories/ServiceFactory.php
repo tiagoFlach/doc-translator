@@ -38,7 +38,7 @@ class ServiceFactory extends Factory
     {
         $english = Language::where('code', 'en')->first();
 
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'source_language_id' => $english->id,
         ]);
     }
@@ -47,7 +47,7 @@ class ServiceFactory extends Factory
     {
         $german = Language::where('code', 'de')->first();
 
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'source_language_id' => $german->id,
         ]);
     }
@@ -56,7 +56,7 @@ class ServiceFactory extends Factory
     {
         $portuguese = Language::where('code', 'pt')->first();
 
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'source_language_id' => $portuguese->id,
         ]);
     }
@@ -65,7 +65,7 @@ class ServiceFactory extends Factory
     {
         $english = Language::where('code', 'en')->first();
 
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'target_language_id' => $english->id,
         ]);
     }
@@ -74,7 +74,7 @@ class ServiceFactory extends Factory
     {
         $german = Language::where('code', 'de')->first();
 
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'target_language_id' => $german->id,
         ]);
     }
@@ -83,7 +83,7 @@ class ServiceFactory extends Factory
     {
         $portuguese = Language::where('code', 'pt')->first();
 
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'target_language_id' => $portuguese->id,
         ]);
     }
